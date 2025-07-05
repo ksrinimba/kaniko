@@ -9,19 +9,18 @@ spec:
     command: ["/bin/sh", "-c"]
     args:
     - |
-      git clone https://github.com/ksrinimba/kaniko.git /workspace  && ls -lr /workspace
+      git clone https://github.com/ksrinimba/kaniko.git /workspace  && ls -lR /workspace
     volumeMounts:
     - name: workspace-volume
       mountPath: /workspace
-    - name: kaniko-secret
-      mountPath: /secret
   - name: kaniko
     image: gcr.io/kaniko-project/executor:latest
     args:
-    - "--context=dir:///workspace"
-    - "--context-sub-path=image-content/helloweb"
+    - "--context=dir://workspace/"
+    - "--context-sub-path=/image-content/helloweb/"
     - "--dockerfile=Dockerfile"
     - "--destination=ksrinimba/hello-web:1.3"
+      #- "--dockerfile=Dockerfile"
       #- "--cache=true"
       #- "--cache-ttl=24h"
     volumeMounts:
