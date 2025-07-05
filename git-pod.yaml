@@ -16,7 +16,7 @@ spec:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:latest
     args:
-    - "--context=dir://workspace/"
+    - "--context=dir:///workspace/"
     - "--context-sub-path=/image-content/helloweb/"
     - "--dockerfile=Dockerfile"
     - "--destination=ksrinimba/hello-web:1.3"
